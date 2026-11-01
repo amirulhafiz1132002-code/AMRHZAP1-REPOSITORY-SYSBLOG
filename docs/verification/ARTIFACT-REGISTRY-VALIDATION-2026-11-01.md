@@ -1,29 +1,23 @@
 # Artifact Registry Validation — 2026-11-01
 
-**Scope:** Revalidation and evidence reconciliation for the canonical artifact registry  
+**Scope:** Original validation snapshot, post-merge re-execution, and reproducible validation workflow  
 **Repository:** AMRHZAP1-REPOSITORY-SYSBLOG  
-**Validated branch:** `main`  
-**Validated commit (immutable snapshot):** `42fbe265ef122093dc640369b8c2e8b88573f84c`  
-**Validation environment:** Assistant-side Python 3.13.5 runtime; jsonschema 4.26.0; PyYAML 6.0.3  
-**Result:** PASS for the checks listed below, within the stated evidence boundary
+**PR #4 merge snapshot:** `5e430312f3b922995c45d89d1deb4aaa2f60231e`  
+**Historical PR #4 validation baseline:** `42fbe265ef122093dc640369b8e2b88573f84c`  
+**GPT-side validation environment:** Python 3.13.5; jsonschema 4.26.0; PyYAML 6.0.3
 
-## Discrepancy reconciliation
+## 1. Historical PR #4 validation snapshot
 
-The earlier version of this report stated that the YAML parser found **four** artifact entries. That count does not describe the canonical registry at the validated revision recorded above.
+PR #4 corrected the stale four-entry count and identified the exact canonical input snapshot at `42fbe265ef122093dc640369b8e2b88573f84c`.
 
-The registry retrieved from `main` at commit `42fbe265ef122093dc640369b8c2e8b88573f84c` contains **five** artifact entries:
-
+The registry at that baseline contained five entries:
 1. `ASIP-13`
 2. `RWCAI-13`
 3. `AMRHZ-ARTIFACT-SCHEMA-001`
 4. `RWCAI-TASK-TEMPLATE-001`
 5. `AMRHZ-ARTIFACT-VALIDATION-001`
 
-The existing four-entry statement is therefore treated as stale or mismatched evidence. The inspected report does not define a separate four-entry subset, so no such distinction is inferred. The checks below were rerun against the five-entry registry snapshot identified by the commit and blob revisions in this report.
-
-## Exact validation inputs
-
-All repository inputs below were fetched from the same immutable commit, `42fbe265ef122093dc640369b8c2e8b88573f84c`.
+The PR #4 report recorded the following seven input blobs:
 
 | Input | Repository path | Git blob SHA |
 |---|---|---|
@@ -31,49 +25,96 @@ All repository inputs below were fetched from the same immutable commit, `42fbe2
 | JSON Schema | `schemas/artifact.schema.json` | `b7d5109c8bf13d18546879ce0faf650d8dd90821` |
 | ASIP metadata | `docs/artifacts/ASIP-13.json` | `154e9c6c5b1ffa66e1fb4783261c77b10c0941f7` |
 | RWCAI metadata | `docs/artifacts/RWCAI-13.json` | `cca0ab5da6c20aaba5f910fe4cafd764e89e0f46` |
-| ASIP protocol document | `docs/protocols/ASIP-13.md` | `49b7172f4695bea2ec3a4cfb00f418d64259df06` |
-| RWCAI protocol document | `docs/protocols/RWCAI-13.md` | `08b7289d7f66414245d6a0d68cb40a5cd8dc5cf6` |
+| ASIP protocol | `docs/protocols/ASIP-13.md` | `49b7172f4695bea2ec3a4cfb00f418d64259df06` |
+| RWCAI protocol | `docs/protocols/RWCAI-13.md` | `08b7289d7f66414245d6a0d68cb40a5cd8dc5cf6` |
 | RWCAI task template | `docs/templates/RWCAI-task-record.md` | `a4724e35504e98dcae1b881f11ef681bd1a2a32c` |
 
-The three additional path targets referenced by the registry—the schema, task template, and validation report—were also fetched successfully from this same commit. The two declared metadata paths were fetched and validated as described below.
+## 2. GPT-side post-merge re-execution
 
-## Checks performed
+After PR #4 was merged, GPT retrieved the current-main registry, schema, both metadata records, protocol documents, task template, and validation report from GitHub. The current `main` HEAD was confirmed as the PR #4 merge commit `5e430312f3b922995c45d89d1deb4aaa2f60231e`.
 
-| Check | Result | Notes |
+A fresh Python execution was performed using the retrieved schema, metadata, and registry content:
+
+| Check | Result | Detail |
 |---|---|---|
-| JSON Schema document syntax | PASS | Schema parsed as JSON |
-| JSON Schema Draft 2020-12 meta-validation | PASS | `Draft202012Validator.check_schema` completed |
-| ASIP-13 metadata instance | PASS | Validated against the retrieved schema with format checking enabled |
-| RWCAI-13 metadata instance | PASS | Validated against the retrieved schema with format checking enabled |
-| YAML registry parsing | PASS | `yaml.safe_load` parsed the registry; five artifact entries found |
-| Registry entry count | PASS | Exactly five entries |
-| Artifact ID uniqueness | PASS | Five IDs present; five unique |
-| Lifecycle status vocabulary | PASS | Every registry artifact status is in the schema's declared status enum |
-| Registry path readback | PASS | All five artifact `path` targets were fetched at the validated commit |
-| Declared metadata path readback | PASS | Both declared metadata targets were fetched at the validated commit |
-| CI automation | NOT RUN | No CI validation workflow was added or invoked |
+| JSON Schema document parsing | PASS | Schema parsed as JSON |
+| Draft 2020-12 meta-validation | PASS | `Draft202012Validator.check_schema` |
+| ASIP-13 metadata validation | PASS | Format checking enabled |
+| RWCAI-13 metadata validation | PASS | Format checking enabled |
+| YAML parsing | PASS | PyYAML `safe_load` |
+| Registry count at this snapshot | PASS | Five entries |
+| Artifact ID uniqueness | PASS | Five unique IDs |
+| Lifecycle status vocabulary | PASS | All statuses are in the schema enum |
+| Registry path readback | PASS | Five declared artifact path targets fetched from GitHub |
+| Metadata path readback | PASS | Both declared metadata targets fetched from GitHub |
 
-## Reproduction outline
+Environment:
+- Python 3.13.5
+- jsonschema 4.26.0
+- PyYAML 6.0.3
 
-Using the exact input files identified above:
+**Execution boundary:** This was a GPT-side execution using content retrieved from GitHub. It was not run on the user's Termux device or in GitHub Actions. The GitHub blob SHAs above were retrieved separately from GitHub; this Python run did not recompute Git object hashes.
 
-1. Parse `schemas/artifact.schema.json` as JSON.
-2. Run JSON Schema Draft 2020-12 meta-validation.
-3. Validate `docs/artifacts/ASIP-13.json` and `docs/artifacts/RWCAI-13.json` against the schema with a format checker.
-4. Parse `artifact-registry.yaml` with PyYAML `safe_load`.
-5. Assert that the registry contains five artifacts, that all artifact IDs are unique, and that each lifecycle status belongs to the schema's declared status enum.
-6. Read back the registry's referenced artifact and metadata paths from the same commit.
+## 3. Reproducible repository validator
 
-## Validation environment and evidence boundary
+This PR adds:
+- `scripts/validate_artifact_registry.py`
+- `requirements-validation.txt`
+- `.github/workflows/validate-artifact-registry.yml`
 
-Validation was performed in an assistant-side Python 3.13.5 runtime using jsonschema 4.26.0 and PyYAML 6.0.3. The repository files were retrieved from GitHub at the immutable commit identified above; validation was performed in that assistant-side runtime.
+The validator checks:
+1. JSON Schema Draft 2020-12 meta-validation.
+2. YAML registry parsing.
+3. Non-empty artifact list.
+4. Unique artifact IDs.
+5. Lifecycle statuses against the schema enum.
+6. Repository-relative artifact paths exist and do not escape the repository root.
+7. Every declared metadata file parses as JSON and validates against the schema with format checking.
 
-This validation was **not** run on the user's Termux device, on a local checkout controlled by the user, or in GitHub Actions. No CI workflow was added or executed. The checks establish syntax, schema validity for the two supplied metadata instances, and the stated registry consistency properties for this repository snapshot only.
+Reproduction command:
 
-This evidence does not establish external AI-provider conformance, automated cross-provider dispatch, shared cross-provider memory, a completed end-to-end multi-provider task, Meta AI independent review, or human acceptance. Those matters remain outside this validation scope and pending where applicable. Human authority and the existing ASIP/RWCAI governance boundaries are unchanged.
+```bash
+python -m pip install -r requirements-validation.txt
+python scripts/validate_artifact_registry.py
+```
+
+The validator was exercised locally against a temporary test tree containing the retrieved schema, metadata, and registry structures. Result: **PASS**. This local script test is not a GitHub Actions result.
+
+## 4. Registry revision introduced by this PR
+
+This PR adds two traceable records to the registry:
+- `META-AI-POST-MERGE-AUDIT-PR4-001`
+- `RWCAI-TASK-2026-001-REV-002`
+
+The proposed registry therefore contains seven entries. The five-entry GPT-side re-execution above applies to the pre-PR #5 main snapshot. The new seven-entry registry and all newly referenced paths must be checked by the PR workflow before CI can be marked PASS.
+
+## 5. CI status
+
+The GitHub Actions workflow is included in this PR and is configured for relevant pull requests, pushes to `main`, and manual dispatch.
+
+**CI result: NOT VERIFIED at report authoring time.** The workflow must complete successfully on the pull request before the repository CI check is marked PASS.
+
+## 6. Independent review record
+
+Meta AI's supplied revised post-merge audit rated PR #4 **PASS WITH CONDITIONS** for its evidence-reconciliation objective. The report itself stated that Meta did not rerun Python validation. GPT's subsequent Python run is recorded separately above and is not attributed to Meta AI.
+
+See `docs/records/META-AI-INDEPENDENT-REVIEW-2026-11-01.md`.
+
+## 7. Evidence boundary and limitations
+
+These checks establish the schema and metadata results, registry consistency, and the stated repository path readbacks for the identified snapshot. They do not establish:
+- validation on the user's Termux device;
+- a successful GitHub Actions run for the new workflow;
+- external AI-provider conformance;
+- automated cross-provider dispatch;
+- shared cross-provider memory;
+- a completed end-to-end multi-provider task;
+- separate human acceptance.
+
+Human authority and the ASIP/RWCAI governance boundaries are unchanged.
 
 ## Result
 
-**PASS** — the schema, both metadata instances, YAML parsing, five-entry count, unique IDs, allowed lifecycle statuses, and referenced-path readbacks passed for the exact repository snapshot and input blobs identified above.
+**PASS** for the GPT-side re-execution on the pre-PR #5 five-entry snapshot and the local validator test against the temporary test tree.
 
-CI reproduction, validation in the user's Termux environment, Meta AI independent review, and separate human acceptance remain pending.
+**NOT VERIFIED** for the new seven-entry PR #5 registry in GitHub Actions until the actual workflow run completes.

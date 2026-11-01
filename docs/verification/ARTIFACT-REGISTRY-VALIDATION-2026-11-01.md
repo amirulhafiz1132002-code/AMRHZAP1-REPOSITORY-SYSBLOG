@@ -10,7 +10,7 @@
 
 PR #4 corrected the stale four-entry count and recorded a baseline identifier. A subsequent GitHub commit lookup found that the recorded identifier was only 38 hexadecimal characters and did not resolve as a Git commit. The exact historical PR #4 base snapshot is therefore not independently verified in this record; no replacement SHA is guessed.
 
-The registry at that baseline contained five entries:
+The pre-PR #5 main snapshot that GPT fetched and revalidated contained five entries:
 1. `ASIP-13`
 2. `RWCAI-13`
 3. `AMRHZ-ARTIFACT-SCHEMA-001`
@@ -69,7 +69,7 @@ The validator checks:
 4. Unique artifact IDs.
 5. Lifecycle statuses against the schema enum.
 6. Repository-relative artifact paths exist and do not escape the repository root.
-7. Every declared metadata file parses as JSON and validates against the schema with format checking.
+7. Every declared metadata file parses as JSON, its `artifact_id` matches the registry entry, and it validates against the schema with format checking.
 
 Reproduction command:
 
@@ -86,13 +86,13 @@ This PR adds two traceable records to the registry:
 - `META-AI-POST-MERGE-AUDIT-PR4-001`
 - `RWCAI-TASK-2026-001-REV-002`
 
-The proposed registry therefore contains seven entries. The five-entry GPT-side re-execution above applies to the pre-PR #5 main snapshot. The seven-entry PR #5 registry and all newly referenced paths were checked by GitHub Actions run 41270885295 against PR merge candidate commit 6a3d5c97c86c4c4bb4b9bd4e264b6197d55978bd.
+The proposed registry therefore contains seven entries. The five-entry GPT-side re-execution above applies to the pre-PR #5 main snapshot. The seven-entry PR #5 registry and all newly referenced paths were checked by GitHub Actions run 41271236103 against the PR merge ref containing head commit 17b42c132d752e5c510560d3f7ae25278b914c5c and base main commit 5e430312f3b922995c45d89d1deb4aaa2f60231e.
 
 ## 5. CI status
 
 The GitHub Actions workflow is included in this PR and is configured for relevant pull requests, pushes to `main`, and manual dispatch.
 
-**CI result: PASS.** GitHub Actions run 41270885295 completed successfully. Job 124743240429 completed all steps successfully, including dependency installation and execution of the registry validator.
+**CI result: PASS.** GitHub Actions run 41271236103 completed successfully. Job 124744269522 completed all steps successfully, including dependency installation and execution of the registry validator.
 
 ## 6. Independent review record
 
@@ -105,16 +105,16 @@ See `docs/records/META-AI-INDEPENDENT-REVIEW-2026-11-01.md`.
 - Workflow: `Validate Artifact Registry`
 - Run ID: `41270885295`
 - Job ID: `124743240429`
-- PR merge candidate: `6a3d5c97c86c4c4bb4b9bd4e264b6197d55978bd`
+- PR merge candidate: `17b42c132d752e5c510560d3f7ae25278b914c5c`
 - Run status: `completed`; conclusion: `success`
 - Runner: Ubuntu 26.04
 - Python: 3.13.17
 - Dependencies: jsonschema 4.26.0; PyYAML 6.0.3
 - Checkout, Python setup, dependency installation, and registry validation steps all completed successfully.
 
-Validator output: Draft 2020-12 meta-validation PASS; YAML registry 7 entries; 7 unique IDs; lifecycle status vocabulary PASS; 7 registry path targets exist; 2 metadata instances validate with format checking; final result PASS.
+Validator output: Draft 2020-12 meta-validation PASS; YAML registry 7 entries; 7 unique IDs; lifecycle status vocabulary PASS; 7 registry path targets exist; 2 metadata artifact IDs match their registry entries; 2 metadata instances validate with format checking; final result PASS.
 
-The runner emitted a non-blocking Node.js 20 deprecation warning for the selected major versions of `actions/checkout` and `actions/setup-python`; the job nevertheless completed successfully.
+The workflow now uses Node 24-compatible major versions of `actions/checkout` and `actions/setup-python`; the earlier Node.js 20 deprecation warning was addressed in the subsequent workflow revision.
 
 ## 7. Evidence boundary and limitations
 

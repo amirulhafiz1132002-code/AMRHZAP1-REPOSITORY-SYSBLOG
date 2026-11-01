@@ -73,12 +73,12 @@ The collaboration mode is MANUAL for the GPT-to-Meta evidence handoff. This is n
 | Original documentation | GPT + human owner | Published protocol, registry, schema, metadata, and task template | PR #1 and PR #2 | Merged |
 | Initial task record | GPT | Recorded the documentation publication task and its limitations | PR #3 | Merged |
 | Review finding | Codex review bot | Identified a mismatch between the four-entry statement and the five-entry registry | PR #3 review thread, line 51 | Finding addressed by PR #4 correction |
-| Evidence correction | GPT + human owner | Corrected the validation report and recorded the exact baseline commit and input blob SHAs | PR #4 | Merged |
+| Evidence correction | GPT + human owner | Corrected the validation report and recorded input blob SHAs; the earlier baseline identifier was later found malformed and is now explicitly NOT VERIFIED | PR #4 | Merged; limitation documented |
 | Post-merge state cross-check | GPT | Confirmed PR #4 merge commit, current-main identity, registry count, and seven blob identities | Merge commit `5e430312...` and GitHub file/tree retrieval | PASS within stated scope |
 | Independent review handoff | Human owner → Meta AI | Transferred GPT cross-check evidence to Meta AI for independent review | Human-supplied revised Meta audit | Received |
 | Independent review | Meta AI | Returned PASS WITH CONDITIONS for PR #4's evidence-reconciliation objective | `META-AI-INDEPENDENT-REVIEW-2026-11-01.md` | PASS WITH CONDITIONS |
 | Fresh Python validation | GPT | Re-ran schema meta-validation, both metadata validations with format checking, YAML parsing, five-entry count, unique IDs, and status vocabulary | GPT-side Python 3.13.5; jsonschema 4.26.0; PyYAML 6.0.3 | PASS for the pre-PR #5 five-entry snapshot |
-| CI execution | GitHub Actions | Executed the new validator against the PR #5 merge candidate | Run 41270885295; job 124743240429 | PASS |
+| CI execution | GitHub Actions | Executed the new validator against the PR #5 merge candidate | Run 41271236103; job 124744269522 | PASS |
 
 ## 7. Validation evidence and exact scope
 
@@ -93,13 +93,15 @@ The GPT-side re-execution returned:
 
 Environment: Python 3.13.5, jsonschema 4.26.0, PyYAML 6.0.3.
 
-This was a GPT-side execution using repository content retrieved from GitHub. It was not executed on AMRHZ's Termux device or in GitHub Actions. The validator script was separately exercised against a temporary test tree containing the retrieved schema, metadata, and seven-entry registry structure; its local test returned PASS. GitHub Actions run 41270885295 then executed the workflow against PR merge candidate 6a3d5c97c86c4c4bb4b9bd4e264b6197d55978bd and completed successfully. The job used Python 3.13.17, jsonschema 4.26.0, and PyYAML 6.0.3. Its validation step reported seven artifact entries, seven unique IDs, valid lifecycle statuses, seven existing registry path targets, and two metadata instances passing format-checked schema validation.
+This was a GPT-side execution using repository content retrieved from GitHub. It was not executed on AMRHZ's Termux device or in GitHub Actions. The validator script was separately exercised against a temporary test tree containing the retrieved schema, metadata, and seven-entry registry structure; its local test returned PASS. GitHub Actions run 41270885295 then executed the workflow against PR merge candidate 17b42c132d752e5c510560d3f7ae25278b914c5c and completed successfully. The job used Python 3.13.17, jsonschema 4.26.0, and PyYAML 6.0.3. Its validation step reported seven artifact entries, seven unique IDs, valid lifecycle statuses, seven existing registry path targets, and two metadata IDs matching their registry entries, with both instances passing format-checked schema validation.
 
 PR #4's seven input blob identities were reported by GPT and Meta AI as matching the current-main snapshot. Blob identity confirms the compared input files match the recorded blob identifiers in current main; because the earlier historical base SHA is malformed and unresolved, this does not establish the exact historical parent snapshot.
 
 ## 8. Findings and reconciliation
 
 - The PR #3 P2 finding concerned the inability to reconcile the task record's five-unique-ID claim with a validation report that stated four entries. PR #4 addressed the count discrepancy.
+- Codex's PR #5 review identified a missing metadata-ID-to-registry-ID comparison; the validator now enforces that match. A negative test with mismatched metadata returned a non-zero exit and the expected failure message.
+- Codex also identified a malformed 38-character historical commit identifier. The revised records use verified full PR #3 base/head SHAs and explicitly leave the exact PR #3 merge / PR #4 historical base commit unverified rather than guessing a replacement.
 - PR #4 corrected the report by recording the five-entry registry state and seven input blob SHAs. A later GitHub lookup found the reported base identifier was only 38 hexadecimal characters and did not resolve; the exact historical base commit is therefore NOT VERIFIED.
 - Meta AI's revised audit accepted PR #4 for its stated evidence-reconciliation objective with conditions.
 - The Meta audit did not itself rerun Python validation; GPT subsequently performed a separate rerun.

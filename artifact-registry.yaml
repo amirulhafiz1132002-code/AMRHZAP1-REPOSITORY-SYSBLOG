@@ -45,7 +45,7 @@ artifacts:
     path: schemas/artifact.schema.json
     verification:
       status: PASS
-      scope: JSON Schema Draft 2020-12 meta-validation, ASIP/RWCAI metadata instance validation, YAML parsing, and GitHub Actions run 41270885295 passed for the seven-entry PR #5 merge candidate.
+      scope: JSON Schema Draft 2020-12 meta-validation, ASIP/RWCAI metadata instance validation, YAML parsing, and GitHub Actions run 41271236103 passed for the seven-entry PR #5 merge candidate, including metadata-to-registry ID matching.
       evidence:
         - docs/verification/ARTIFACT-REGISTRY-VALIDATION-2026-11-01.md
     limitations:
@@ -71,7 +71,7 @@ artifacts:
     path: docs/verification/ARTIFACT-REGISTRY-VALIDATION-2026-11-01.md
     verification:
       status: PASS
-      scope: GPT-side re-execution and GitHub Actions run 41270885295 passed for the seven-entry PR #5 merge candidate.
+      scope: GPT-side re-execution and GitHub Actions run 41271236103 passed for the seven-entry PR #5 merge candidate, including metadata-to-registry ID matching.
     limitations:
       - Validation does not establish runtime cross-provider dispatch, shared memory, or external provider conformance.
 

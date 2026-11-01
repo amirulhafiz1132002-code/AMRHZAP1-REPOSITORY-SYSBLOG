@@ -109,6 +109,7 @@ def main() -> int:
     print(f"PASS: {len(seen_ids)} unique artifact IDs")
     print("PASS: all lifecycle statuses use the schema vocabulary")
     print(f"PASS: {path_count} registry path targets exist")
+    print(f"PASS: {metadata_count} metadata artifact IDs match registry entries")
     print(f"PASS: {metadata_count} metadata instances validate with format checking")
     print("RESULT: PASS")
     return 0

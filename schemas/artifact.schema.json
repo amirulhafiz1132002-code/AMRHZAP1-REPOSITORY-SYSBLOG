@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/amirulhafiz1132002-code/AMRHZAP1-REPOSITORY-SYSBLOG/blob/main/schemas/artifact.schema.json",
+  "title": "AMRHZ Persistent Artifact",
+  "description": "Metadata contract for versioned AMRHZ/AP1 documentation, evidence, implementation, and research artifacts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_id",
+    "title",
+    "artifact_type",
+    "version",
+    "status",
+    "description",
+    "provenance",
+    "created_at",
+    "updated_at",
+    "owner_role",
+    "verification",
+    "limitations"
+  ],
+  "properties": {
+    "artifact_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9._-]{2,63}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifact_type": {
+      "type": "string",
+      "enum": [
+        "protocol",
+        "architecture",
+        "evidence",
+        "implementation",
+        "evaluation",
+        "decision",
+        "dataset",
+        "model",
+        "documentation",
+        "other"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+([+-][0-9A-Za-z.-]+)?$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "PROPOSED",
+        "PLANNED",
+        "DEVELOPMENT",
+        "PARTIAL",
+        "VERIFIED",
+        "LIVE",
+        "BLOCKED",
+        "DEPRECATED"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "path"],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "format": "uri"
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "description": "Immutable commit SHA, release identifier, or other source revision."
+        },
+        "source_artifacts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "owner_role": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "scope", "evidence"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "NOT_RUN",
+            "PENDING",
+            "PARTIAL",
+            "PASS",
+            "FAIL"
+          ]
+        },
+        "scope": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["claim", "source", "result"],
+            "properties": {
+              "claim": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string",
+                "format": "uri"
+              },
+              "revision": {
+                "type": "string"
+              },
+              "captured_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "method": {
+                "type": "string"
+              },
+              "result": {
+                "type": "string",
+                "enum": ["PASS", "FAIL", "PARTIAL", "NOT_RUN"]
+              },
+              "notes": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

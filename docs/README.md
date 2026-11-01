@@ -17,6 +17,12 @@ This directory contains the human-readable protocol specifications and the docum
 - [RWCAI task-record template](templates/RWCAI-task-record.md)
 - [Artifact registry validation report](verification/ARTIFACT-REGISTRY-VALIDATION-2026-11-01.md)
 
+## Personal learning and reflection
+
+- [Personal Islamic Practice & Reflection — Surah Taha](records/PERSONAL-ISLAMIC-PRACTICE-SURAH-TAHA.md)
+
+This is an owner-authored personal reflection record, not a product specification, religious ruling, tafsir, or claim of spiritual status.
+
 ## Authority and status
 
 These documents define the intended protocol and governance model. They do not create technical integrations, authenticate AI systems, grant repository permissions, or prove that a runtime is connected.

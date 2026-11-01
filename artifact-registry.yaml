@@ -44,8 +44,10 @@ artifacts:
     status: PARTIAL
     path: schemas/artifact.schema.json
     verification:
-      status: PARTIAL
-      scope: JSON syntax parsing passed; full JSON Schema meta-validation and example-instance validation remain pending.
+      status: PASS
+      scope: JSON Schema Draft 2020-12 meta-validation, ASIP/RWCAI metadata instance validation, and YAML parsing passed in the isolated Python validation environment; CI automation is not configured.
+      evidence:
+        - docs/verification/ARTIFACT-REGISTRY-VALIDATION-2026-11-01.md
     limitations:
       - Automated schema validation has not yet been added to CI.
 
@@ -60,3 +62,15 @@ artifacts:
       scope: Template review and first completed task record.
     limitations:
       - The template is not a completed collaboration task record.
+
+  - artifact_id: AMRHZ-ARTIFACT-VALIDATION-001
+    title: Artifact Registry Validation Record
+    artifact_type: evaluation
+    version: 1.0.0
+    status: PARTIAL
+    path: docs/verification/ARTIFACT-REGISTRY-VALIDATION-2026-11-01.md
+    verification:
+      status: PASS
+      scope: Validation report readback and documented results; CI reproduction remains pending.
+    limitations:
+      - Checks were run in an isolated assistant-side Python environment, not on the user's Termux device or GitHub Actions.

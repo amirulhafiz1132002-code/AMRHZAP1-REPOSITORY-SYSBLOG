@@ -91,6 +91,8 @@ def main() -> int:
         if metadata_path is not None:
             metadata_file = safe_repo_path(metadata_path, "metadata_path", artifact_id)
             metadata = load_json(metadata_file)
+            if not isinstance(metadata, dict) or metadata.get("artifact_id") != artifact_id:
+                fail(f"{artifact_id}: metadata artifact_id does not match the registry entry")
             errors = sorted(
                 validator.iter_errors(metadata),
                 key=lambda error: list(error.absolute_path),

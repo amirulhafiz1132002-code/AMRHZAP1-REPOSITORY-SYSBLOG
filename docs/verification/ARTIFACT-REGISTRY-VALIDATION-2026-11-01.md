@@ -3,12 +3,12 @@
 **Scope:** Original validation snapshot, post-merge re-execution, and reproducible validation workflow  
 **Repository:** AMRHZAP1-REPOSITORY-SYSBLOG  
 **PR #4 merge snapshot:** `5e430312f3b922995c45d89d1deb4aaa2f60231e`  
-**Historical PR #4 validation baseline:** `42fbe265ef122093dc640369b8e2b88573f84c`  
+**Historical PR #4 baseline:** NOT VERIFIED — the identifier previously recorded was 38 hexadecimal characters and did not resolve as a Git commit.  
 **GPT-side validation environment:** Python 3.13.5; jsonschema 4.26.0; PyYAML 6.0.3
 
 ## 1. Historical PR #4 validation snapshot
 
-PR #4 corrected the stale four-entry count and identified the exact canonical input snapshot at `42fbe265ef122093dc640369b8e2b88573f84c`.
+PR #4 corrected the stale four-entry count and recorded a baseline identifier. A subsequent GitHub commit lookup found that the recorded identifier was only 38 hexadecimal characters and did not resolve as a Git commit. The exact historical PR #4 base snapshot is therefore not independently verified in this record; no replacement SHA is guessed.
 
 The registry at that baseline contained five entries:
 1. `ASIP-13`
@@ -17,7 +17,7 @@ The registry at that baseline contained five entries:
 4. `RWCAI-TASK-TEMPLATE-001`
 5. `AMRHZ-ARTIFACT-VALIDATION-001`
 
-The PR #4 report recorded the following seven input blobs:
+The PR #4 report recorded the following seven input blob identifiers. GPT subsequently confirmed that each identifier matches the corresponding file in the current `main` tree. Because the historical baseline identifier does not resolve, this comparison does not independently prove that all seven blobs belonged to a reproducible historical commit:
 
 | Input | Repository path | Git blob SHA |
 |---|---|---|
@@ -53,7 +53,7 @@ Environment:
 - jsonschema 4.26.0
 - PyYAML 6.0.3
 
-**Execution boundary:** This was a GPT-side execution using content retrieved from GitHub. It was not run on the user's Termux device or in GitHub Actions. The GitHub blob SHAs above were retrieved separately from GitHub; this Python run did not recompute Git object hashes.
+**Execution boundary:** This was a GPT-side execution using content retrieved from GitHub at the verified PR #4 merge snapshot/current `main` state. It was not run on the user's Termux device. The GitHub blob SHAs above were retrieved separately from GitHub; this Python run did not recompute Git object hashes. The exact pre-merge PR #4 base commit remains unresolved because the earlier recorded identifier was malformed.
 
 ## 3. Reproducible repository validator
 

@@ -18,7 +18,7 @@
 
 This revision supplements the original task record with:
 1. PR #3 publication of the original task record.
-2. PR #4 correction of the stale four-entry validation statement and identification of the immutable validation input snapshot.
+2. PR #4 correction of the stale four-entry validation statement and recording of the input blob identifiers; the previously recorded PR #4 base identifier was later found not to resolve as a valid full commit SHA.
 3. Post-merge GitHub state and blob-identity cross-checks.
 4. The Meta AI revised independent post-merge audit of PR #4, transferred through the human owner.
 5. A fresh GPT-side Python validation run against the retrieved repository content.
@@ -60,7 +60,7 @@ The collaboration mode is MANUAL for the GPT-to-Meta evidence handoff. This is n
 |---|---|---|
 | PR #1 | Merge commit `e3f32bb46bfecf62c423b6a836a0b27371ed2e2c` | Initial ASIP/RWCAI protocol and registry publication |
 | PR #2 | Merge commit `8639a74e32fbb462f7e14247a7dd3ede12d4f8e4` | Metadata, task template, and validation evidence |
-| PR #3 | Merge commit `42fbe265ef122093dc640369b8e2b88573f84c` | Original Task #001 record |
+| PR #3 | Merged; base SHA `8639a74e32fbb462f7e14247a7dd3ede12d4f8e4`; head SHA `b9bf9da56264078a2eec8ff32be6415838fb88f7`; exact merge commit SHA not independently resolved | Original Task #001 record |
 | PR #4 | Merge commit `5e430312f3b922995c45d89d1deb4aaa2f60231e` | Corrected validation evidence |
 | Original Task #001 record | `docs/records/RWCAI-TASK-2026-001-ASIP-RWCAI-DOCUMENTATION-PUBLICATION.md`, blob `63a8c071a20a0d87dbe85b5b381ba720404027c2` | Preserved original record |
 | Meta AI post-merge audit | `docs/records/META-AI-INDEPENDENT-REVIEW-2026-11-01.md` | PR #4 independent audit as supplied by human owner |
@@ -95,12 +95,12 @@ Environment: Python 3.13.5, jsonschema 4.26.0, PyYAML 6.0.3.
 
 This was a GPT-side execution using repository content retrieved from GitHub. It was not executed on AMRHZ's Termux device or in GitHub Actions. The validator script was separately exercised against a temporary test tree containing the retrieved schema, metadata, and seven-entry registry structure; its local test returned PASS. GitHub Actions run 41270885295 then executed the workflow against PR merge candidate 6a3d5c97c86c4c4bb4b9bd4e264b6197d55978bd and completed successfully. The job used Python 3.13.17, jsonschema 4.26.0, and PyYAML 6.0.3. Its validation step reported seven artifact entries, seven unique IDs, valid lifecycle statuses, seven existing registry path targets, and two metadata instances passing format-checked schema validation.
 
-PR #4's seven input blob identities were reported by GPT and Meta AI as matching the current-main snapshot. Blob identity confirms the compared input files were unchanged; it is not itself a test execution.
+PR #4's seven input blob identities were reported by GPT and Meta AI as matching the current-main snapshot. Blob identity confirms the compared input files match the recorded blob identifiers in current main; because the earlier historical base SHA is malformed and unresolved, this does not establish the exact historical parent snapshot.
 
 ## 8. Findings and reconciliation
 
-- The PR #3 P2 finding concerned the inability to reconcile the task record's five-unique-ID claim with a validation report that stated four entries.
-- PR #4 corrected the report by naming the canonical five-entry snapshot and recording the exact input blob SHAs.
+- The PR #3 P2 finding concerned the inability to reconcile the task record's five-unique-ID claim with a validation report that stated four entries. PR #4 addressed the count discrepancy.
+- PR #4 corrected the report by recording the five-entry registry state and seven input blob SHAs. A later GitHub lookup found the reported base identifier was only 38 hexadecimal characters and did not resolve; the exact historical base commit is therefore NOT VERIFIED.
 - Meta AI's revised audit accepted PR #4 for its stated evidence-reconciliation objective with conditions.
 - The Meta audit did not itself rerun Python validation; GPT subsequently performed a separate rerun.
 - CI automation is being introduced as a reproducibility improvement. It is not treated as complete until an actual GitHub Actions run succeeds.
@@ -128,6 +128,7 @@ PR #4's seven input blob identities were reported by GPT and Meta AI as matching
 - Meta AI is credited only for the review response actually supplied.
 - GPT-side validation is not attributed to Meta AI.
 - CI is marked PASS only for the successful PR #5 run recorded above; later commits still require their own checks.
+- The exact PR #3 merge commit SHA and PR #4 historical base SHA are not asserted because the previously recorded 38-character identifier did not resolve; no full SHA has been inferred.
 - Manual handoff is not described as API integration or automatic dispatch.
 - No secrets, tokens, or credentials are included.
 - Human authority remains final.

@@ -18,10 +18,10 @@ This record captures the **PR #4 post-merge audit only**. It does not stand in f
 - PR #4 merged: `true`
 - Merge commit: `5e430312f3b922995c45d89d1deb4aaa2f60231e`
 - Current `main` HEAD at audit time: `5e430312f3b922995c45d89d1deb4aaa2f60231e`
-- Parent 1: `42fbe265ef122093dc640369b8e2b88573f84c`
+- Parent 1: NOT INDEPENDENTLY VERIFIED — the identifier in the supplied report was malformed and did not resolve as a full Git commit SHA.
 - Parent 2: `76310d773d1eb487db35e37c326c1cb3e11b1191`
 
-The supplied audit concludes that HEAD equals the merge commit and the merge parents align with the PR baseline and head.
+The supplied audit concludes that HEAD equals the merge commit and that the merge parents align with the PR baseline and head. GPT independently verified the PR #4 merge commit and current `main` HEAD, but could not independently resolve the reported first-parent identifier. GitHub PR #3 search data exposes the valid PR #3 base SHA `8639a74e32fbb462f7e14247a7dd3ede12d4f8e4` and head SHA `b9bf9da56264078a2eec8ff32be6415838fb88f7`; the exact PR #3 merge commit SHA remains unverified.
 
 ## 3. Checks in the supplied Meta AI report
 

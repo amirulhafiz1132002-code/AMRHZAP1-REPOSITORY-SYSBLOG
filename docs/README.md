@@ -23,6 +23,14 @@ This directory contains the human-readable protocol specifications and the docum
 
 This is an owner-authored personal reflection record, not a product specification, religious ruling, tafsir, or claim of spiritual status.
 
+## Intent and source context
+
+- [AMRHZ Intent Clarification Layer](intent/README.md)
+- [Intent record template](templates/intent-record.md)
+- [Intent record JSON Schema](../schemas/intent-record.schema.json)
+
+The Intent Clarification Layer is the human- and AI-readable framework for collecting, tracing, clarifying, and reviewing the intent behind AMRHZ work. Its full personal and project overview remains pending the owner's source collection and review. Context does not grant implementation or deployment authorization.
+
 ## Authority and status
 
 These documents define the intended protocol and governance model. They do not create technical integrations, authenticate AI systems, grant repository permissions, or prove that a runtime is connected.

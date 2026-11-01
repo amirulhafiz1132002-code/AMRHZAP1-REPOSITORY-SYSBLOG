@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/amirulhafiz1132002-code/AMRHZAP1-REPOSITORY-SYSBLOG/blob/main/schemas/intent-record.schema.json",
+  "title": "AMRHZ Intent Record",
+  "description": "Structured record for owner intent, context, source provenance, interpretation, decisions, and scoped authorization.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "title",
+    "record_type",
+    "status",
+    "intent",
+    "why_it_matters",
+    "desired_outcome",
+    "sources",
+    "interpretations",
+    "authorization",
+    "owner_review"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "pattern": "^AMRHZ-INTENT-[A-Z0-9-]{3,40}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "record_type": {
+      "type": "string",
+      "enum": [
+        "personal_context",
+        "project_intent",
+        "decision",
+        "learning_reflection",
+        "task_intent",
+        "source_summary",
+        "other"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "NEEDS_CLARIFICATION",
+        "PENDING_SOURCE_REVIEW",
+        "PENDING_OWNER_REVIEW",
+        "OWNER_CONFIRMED",
+        "SUPERSEDED",
+        "ARCHIVED"
+      ]
+    },
+    "intent": {
+      "type": "string",
+      "minLength": 1
+    },
+    "why_it_matters": {
+      "type": "string"
+    },
+    "personal_context": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "desired_outcome": {
+      "type": "string"
+    },
+    "related_projects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_id",
+          "source_type",
+          "inspection_status"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "video",
+              "audio",
+              "transcript",
+              "document",
+              "conversation",
+              "repository",
+              "image",
+              "other"
+            ]
+          },
+          "location": {
+            "type": "string"
+          },
+          "timestamp_or_range": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "inspection_status": {
+            "type": "string",
+            "enum": [
+              "NOT_REVIEWED",
+              "IN_REVIEW",
+              "REVIEWED",
+              "PARTIALLY_REVIEWED",
+              "UNAVAILABLE"
+            ]
+          },
+          "handling_restrictions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "interpretations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "statement",
+          "classification"
+        ],
+        "properties": {
+          "statement": {
+            "type": "string"
+          },
+          "classification": {
+            "type": "string",
+            "enum": [
+              "OWNER_STATED",
+              "SOURCE_FACT",
+              "AI_INTERPRETATION",
+              "OWNER_CONFIRMED",
+              "VERIFIED_STATE",
+              "ASSUMPTION",
+              "UNRESOLVED",
+              "SUPERSEDED"
+            ]
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "confidence_note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "open_questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "decision",
+          "status"
+        ],
+        "properties": {
+          "decision": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PROPOSED",
+              "OWNER_CONFIRMED",
+              "SUPERSEDED",
+              "REJECTED"
+            ]
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "approved_scope",
+        "implementation_authorized",
+        "deployment_authorized"
+      ],
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": [
+            "EXPLORE",
+            "CLARIFY",
+            "AUDIT",
+            "PROPOSE",
+            "EXECUTE",
+            "VERIFY"
+          ]
+        },
+        "approved_scope": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "implementation_authorized": {
+          "type": "boolean"
+        },
+        "deployment_authorized": {
+          "type": "boolean"
+        },
+        "approval_source": {
+          "type": "string"
+        }
+      }
+    },
+    "owner_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "PENDING",
+            "CONFIRMED",
+            "CHANGES_REQUESTED",
+            "NOT_REQUIRED"
+          ]
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  }
+}

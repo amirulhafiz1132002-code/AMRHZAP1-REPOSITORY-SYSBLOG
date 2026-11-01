@@ -1,20 +1,23 @@
 registry:
   name: AMRHZ Persistent Knowledge & Evidence Registry
-  version: 1.0.0
-  status: INITIAL
+  version: 1.0.1
+  status: PARTIAL
   governing_protocol: ASIP-13
   repository: https://github.com/amirulhafiz1132002-code/AMRHZAP1-REPOSITORY-SYSBLOG
+  initial_protocol_publication_revision: e3f32bb46bfecf62c423b6a836a0b27371ed2e2c
+  initial_protocol_publication_at: 2026-11-01T02:48:46Z
 
 artifacts:
   - artifact_id: ASIP-13
     title: AMRHZ Shared Intelligence Protocol
     artifact_type: protocol
     version: 1.0.0
-    status: DOCUMENTED
+    status: PARTIAL
     path: docs/protocols/ASIP-13.md
+    metadata_path: docs/artifacts/ASIP-13.json
     verification:
-      status: PENDING
-      scope: Documentation review and schema/link validation
+      status: PARTIAL
+      scope: Canonical document publication and repository readback; runtime enforcement and external AI conformance are not verified.
     limitations:
       - Protocol documentation does not implement authentication, authorization, or runtime orchestration.
       - Conformance by external AI services has not been independently verified.
@@ -23,24 +26,37 @@ artifacts:
     title: Real World Cross-AI Collaboration Pipeline
     artifact_type: protocol
     version: 1.0.0
-    status: DOCUMENTED
+    status: PARTIAL
     path: docs/protocols/RWCAI-13.md
+    metadata_path: docs/artifacts/RWCAI-13.json
     verification:
-      status: PENDING
-      scope: Documentation review and one fully recorded end-to-end collaboration task
+      status: PARTIAL
+      scope: Specification publication and readback; a complete end-to-end multi-provider task and automated integration are not verified.
     limitations:
       - Automated cross-provider dispatch is not verified.
       - Shared cross-provider memory is not implemented by this documentation.
-      - Tool-assisted or API-integrated operation requires separate evidence.
+      - A complete task ledger with independent AI output, handoff, review, correction, and acceptance evidence remains to be recorded.
 
   - artifact_id: AMRHZ-ARTIFACT-SCHEMA-001
     title: AMRHZ Persistent Artifact Metadata Schema
     artifact_type: architecture
     version: 1.0.0
-    status: DEVELOPMENT
+    status: PARTIAL
     path: schemas/artifact.schema.json
     verification:
-      status: PENDING
-      scope: JSON Schema parser and example-instance validation
+      status: PARTIAL
+      scope: JSON syntax parsing passed; full JSON Schema meta-validation and example-instance validation remain pending.
     limitations:
-      - Schema validation has not yet been executed in a CI workflow.
+      - Automated schema validation has not yet been added to CI.
+
+  - artifact_id: RWCAI-TASK-TEMPLATE-001
+    title: RWCAI Task Record Template
+    artifact_type: documentation
+    version: 1.0.0
+    status: PARTIAL
+    path: docs/templates/RWCAI-task-record.md
+    verification:
+      status: PENDING
+      scope: Template review and first completed task record.
+    limitations:
+      - The template is not a completed collaboration task record.

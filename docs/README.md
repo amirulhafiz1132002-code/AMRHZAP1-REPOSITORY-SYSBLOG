@@ -12,6 +12,9 @@ This directory contains the human-readable protocol specifications and the docum
 - [Artifact registry and evidence model](artifacts/README.md)
 - [Artifact metadata schema](../schemas/artifact.schema.json)
 - [Initial protocol manifest](../artifact-registry.yaml)
+- [ASIP-13 metadata](artifacts/ASIP-13.json)
+- [RWCAI-13 metadata](artifacts/RWCAI-13.json)
+- [RWCAI task-record template](templates/RWCAI-task-record.md)
 
 ## Authority and status
 

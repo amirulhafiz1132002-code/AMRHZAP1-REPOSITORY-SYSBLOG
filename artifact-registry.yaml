@@ -1,6 +1,6 @@
 registry:
   name: AMRHZ Persistent Knowledge & Evidence Registry
-  version: 1.0.1
+  version: 1.0.2
   status: PARTIAL
   governing_protocol: ASIP-13
   repository: https://github.com/amirulhafiz1132002-code/AMRHZAP1-REPOSITORY-SYSBLOG
@@ -45,11 +45,11 @@ artifacts:
     path: schemas/artifact.schema.json
     verification:
       status: PASS
-      scope: JSON Schema Draft 2020-12 meta-validation, ASIP/RWCAI metadata instance validation, and YAML parsing passed in the isolated Python validation environment; CI automation is not configured.
+      scope: JSON Schema Draft 2020-12 meta-validation, ASIP/RWCAI metadata instance validation, YAML parsing, and GitHub Actions run 41271324221 passed for the seven-entry PR #5 merge candidate, including metadata-to-registry ID matching.
       evidence:
         - docs/verification/ARTIFACT-REGISTRY-VALIDATION-2026-11-01.md
     limitations:
-      - Automated schema validation has not yet been added to CI.
+      - Runtime cross-provider dispatch and shared cross-provider memory remain unverified.
 
   - artifact_id: RWCAI-TASK-TEMPLATE-001
     title: RWCAI Task Record Template
@@ -59,9 +59,9 @@ artifacts:
     path: docs/templates/RWCAI-task-record.md
     verification:
       status: PENDING
-      scope: Template review and first completed task record.
+      scope: Template review and completed task-record evidence.
     limitations:
-      - The template is not a completed collaboration task record.
+      - The template is not itself a completed collaboration task record.
 
   - artifact_id: AMRHZ-ARTIFACT-VALIDATION-001
     title: Artifact Registry Validation Record
@@ -71,6 +71,31 @@ artifacts:
     path: docs/verification/ARTIFACT-REGISTRY-VALIDATION-2026-11-01.md
     verification:
       status: PASS
-      scope: Validation report readback and documented results; CI reproduction remains pending.
+      scope: GPT-side re-execution and GitHub Actions run 41271236103 passed for the seven-entry PR #5 merge candidate, including metadata-to-registry ID matching.
     limitations:
-      - Checks were run in an isolated assistant-side Python environment, not on the user's Termux device or GitHub Actions.
+      - Validation does not establish runtime cross-provider dispatch, shared memory, or external provider conformance.
+
+  - artifact_id: META-AI-POST-MERGE-AUDIT-PR4-001
+    title: Meta AI Independent Post-Merge Audit of PR #4
+    artifact_type: evaluation
+    version: 1.0.0
+    status: PARTIAL
+    path: docs/records/META-AI-INDEPENDENT-REVIEW-2026-11-01.md
+    verification:
+      status: PARTIAL
+      scope: Audit report supplied by the human owner and preserved as a review record; authenticity is not cryptographically attested by this repository.
+    limitations:
+      - This record covers PR #4 post-merge reconciliation only, not the separate earlier review described as a 187-line and 13-link audit.
+      - Meta AI did not rerun the Python validation in the supplied report.
+
+  - artifact_id: RWCAI-TASK-2026-001-REV-002
+    title: RWCAI Task 2026-001 Revision 002
+    artifact_type: documentation
+    version: 1.0.0
+    status: PARTIAL
+    path: docs/records/RWCAI-TASK-2026-001-REV-002.md
+    verification:
+      status: PARTIAL
+      scope: Supplemental task-record revision documenting PR #4, the Meta AI post-merge review, and the GPT-side validation rerun; CI and human acceptance remain pending.
+    limitations:
+      - Revision 002 does not establish automated cross-provider dispatch, shared memory, or runtime integration.

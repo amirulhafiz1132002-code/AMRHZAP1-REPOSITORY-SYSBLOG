@@ -86,13 +86,13 @@ This PR adds two traceable records to the registry:
 - `META-AI-POST-MERGE-AUDIT-PR4-001`
 - `RWCAI-TASK-2026-001-REV-002`
 
-The proposed registry therefore contains seven entries. The five-entry GPT-side re-execution above applies to the pre-PR #5 main snapshot. The seven-entry PR #5 registry and all newly referenced paths were checked by GitHub Actions run 41271236103 against the PR merge ref containing head commit 17b42c132d752e5c510560d3f7ae25278b914c5c and base main commit 5e430312f3b922995c45d89d1deb4aaa2f60231e.
+The proposed registry therefore contains seven entries. The five-entry GPT-side re-execution above applies to the pre-PR #5 main snapshot. The seven-entry PR #5 registry and all newly referenced paths were checked by GitHub Actions run 41271324221 against the PR merge ref containing head commit 17b42c132d752e5c510560d3f7ae25278b914c5c and base main commit 5e430312f3b922995c45d89d1deb4aaa2f60231e.
 
 ## 5. CI status
 
 The GitHub Actions workflow is included in this PR and is configured for relevant pull requests, pushes to `main`, and manual dispatch.
 
-**CI result: PASS.** GitHub Actions run 41271236103 completed successfully. Job 124744269522 completed all steps successfully, including dependency installation and execution of the registry validator.
+**CI result: PASS.** GitHub Actions run 41271236103 completed successfully. Job 124744528814 completed all steps successfully, including dependency installation and execution of the registry validator.
 
 ## 6. Independent review record
 
@@ -105,7 +105,7 @@ See `docs/records/META-AI-INDEPENDENT-REVIEW-2026-11-01.md`.
 - Workflow: `Validate Artifact Registry`
 - Run ID: `41270885295`
 - Job ID: `124743240429`
-- PR merge candidate: `17b42c132d752e5c510560d3f7ae25278b914c5c`
+- PR head commit: `13742d858914cebefbcbb3532b6b3cfe2a47bf2f`
 - Run status: `completed`; conclusion: `success`
 - Runner: Ubuntu 26.04
 - Python: 3.13.17
@@ -114,7 +114,7 @@ See `docs/records/META-AI-INDEPENDENT-REVIEW-2026-11-01.md`.
 
 Validator output: Draft 2020-12 meta-validation PASS; YAML registry 7 entries; 7 unique IDs; lifecycle status vocabulary PASS; 7 registry path targets exist; 2 metadata artifact IDs match their registry entries; 2 metadata instances validate with format checking; final result PASS.
 
-The workflow now uses Node 24-compatible major versions of `actions/checkout` and `actions/setup-python`; the earlier Node.js 20 deprecation warning was addressed in the subsequent workflow revision.
+The workflow uses `actions/checkout@v6` and `actions/setup-python@v7`. Run 41271324221 completed without the earlier Node.js 20 deprecation warning.
 
 ## 7. Evidence boundary and limitations
 

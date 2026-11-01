@@ -75,7 +75,7 @@ The subsequent run returned:
 - Unique artifact IDs: PASS
 - Lifecycle status vocabulary: PASS
 
-The new repository validator and GitHub Actions workflow proposed alongside this record are not considered CI-verified until an actual GitHub Actions run completes successfully.
+At the time this Meta audit was supplied, the new validator and workflow had not yet run. A subsequent GitHub Actions run for PR #5 completed successfully: run 41270885295, job 124743240429, PR merge candidate 6a3d5c97c86c4c4bb4b9bd4e264b6197d55978bd. The validator reported Draft 2020-12 meta-validation PASS, seven registry entries, seven unique IDs, valid lifecycle statuses, seven existing registry paths, two metadata instances valid with format checking, and final PASS. This later CI result is GPT/GitHub evidence and is not attributed to Meta AI.
 
 ## 6. Evidence boundaries
 

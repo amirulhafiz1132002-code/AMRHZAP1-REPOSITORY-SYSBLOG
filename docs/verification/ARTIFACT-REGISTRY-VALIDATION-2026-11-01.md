@@ -86,13 +86,13 @@ This PR adds two traceable records to the registry:
 - `META-AI-POST-MERGE-AUDIT-PR4-001`
 - `RWCAI-TASK-2026-001-REV-002`
 
-The proposed registry therefore contains seven entries. The five-entry GPT-side re-execution above applies to the pre-PR #5 main snapshot. The new seven-entry registry and all newly referenced paths must be checked by the PR workflow before CI can be marked PASS.
+The proposed registry therefore contains seven entries. The five-entry GPT-side re-execution above applies to the pre-PR #5 main snapshot. The seven-entry PR #5 registry and all newly referenced paths were checked by GitHub Actions run 41270885295 against PR merge candidate commit 6a3d5c97c86c4c4bb4b9bd4e264b6197d55978bd.
 
 ## 5. CI status
 
 The GitHub Actions workflow is included in this PR and is configured for relevant pull requests, pushes to `main`, and manual dispatch.
 
-**CI result: NOT VERIFIED at report authoring time.** The workflow must complete successfully on the pull request before the repository CI check is marked PASS.
+**CI result: PASS.** GitHub Actions run 41270885295 completed successfully. Job 124743240429 completed all steps successfully, including dependency installation and execution of the registry validator.
 
 ## 6. Independent review record
 
@@ -100,11 +100,27 @@ Meta AI's supplied revised post-merge audit rated PR #4 **PASS WITH CONDITIONS**
 
 See `docs/records/META-AI-INDEPENDENT-REVIEW-2026-11-01.md`.
 
+### GitHub Actions execution evidence
+
+- Workflow: `Validate Artifact Registry`
+- Run ID: `41270885295`
+- Job ID: `124743240429`
+- PR merge candidate: `6a3d5c97c86c4c4bb4b9bd4e264b6197d55978bd`
+- Run status: `completed`; conclusion: `success`
+- Runner: Ubuntu 26.04
+- Python: 3.13.17
+- Dependencies: jsonschema 4.26.0; PyYAML 6.0.3
+- Checkout, Python setup, dependency installation, and registry validation steps all completed successfully.
+
+Validator output: Draft 2020-12 meta-validation PASS; YAML registry 7 entries; 7 unique IDs; lifecycle status vocabulary PASS; 7 registry path targets exist; 2 metadata instances validate with format checking; final result PASS.
+
+The runner emitted a non-blocking Node.js 20 deprecation warning for the selected major versions of `actions/checkout` and `actions/setup-python`; the job nevertheless completed successfully.
+
 ## 7. Evidence boundary and limitations
 
 These checks establish the schema and metadata results, registry consistency, and the stated repository path readbacks for the identified snapshot. They do not establish:
 - validation on the user's Termux device;
-- a successful GitHub Actions run for the new workflow;
+- runtime cross-provider integration;
 - external AI-provider conformance;
 - automated cross-provider dispatch;
 - shared cross-provider memory;
@@ -117,4 +133,4 @@ Human authority and the ASIP/RWCAI governance boundaries are unchanged.
 
 **PASS** for the GPT-side re-execution on the pre-PR #5 five-entry snapshot and the local validator test against the temporary test tree.
 
-**NOT VERIFIED** for the new seven-entry PR #5 registry in GitHub Actions until the actual workflow run completes.
+**PASS** for the seven-entry PR #5 merge candidate in GitHub Actions run 41270885295. Termux-side validation, runtime cross-provider dispatch, shared memory, and human acceptance remain outside this CI result.

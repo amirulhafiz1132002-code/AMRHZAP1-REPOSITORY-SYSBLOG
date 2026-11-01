@@ -78,7 +78,7 @@ The collaboration mode is MANUAL for the GPT-to-Meta evidence handoff. This is n
 | Independent review handoff | Human owner → Meta AI | Transferred GPT cross-check evidence to Meta AI for independent review | Human-supplied revised Meta audit | Received |
 | Independent review | Meta AI | Returned PASS WITH CONDITIONS for PR #4's evidence-reconciliation objective | `META-AI-INDEPENDENT-REVIEW-2026-11-01.md` | PASS WITH CONDITIONS |
 | Fresh Python validation | GPT | Re-ran schema meta-validation, both metadata validations with format checking, YAML parsing, five-entry count, unique IDs, and status vocabulary | GPT-side Python 3.13.5; jsonschema 4.26.0; PyYAML 6.0.3 | PASS for the pre-PR #5 five-entry snapshot |
-| Reproducibility work | GPT | Prepared a repository validator and GitHub Actions workflow | PR #5 branch, pending review/run | NOT VERIFIED in GitHub Actions |
+| CI execution | GitHub Actions | Executed the new validator against the PR #5 merge candidate | Run 41270885295; job 124743240429 | PASS |
 
 ## 7. Validation evidence and exact scope
 
@@ -93,7 +93,7 @@ The GPT-side re-execution returned:
 
 Environment: Python 3.13.5, jsonschema 4.26.0, PyYAML 6.0.3.
 
-This was a GPT-side execution using repository content retrieved from GitHub. It was not executed on AMRHZ's Termux device or in GitHub Actions. The validator script was separately exercised against a temporary test tree containing the retrieved schema, metadata, and registry structures; its local test returned PASS. The GitHub Actions workflow has not yet produced a verified run.
+This was a GPT-side execution using repository content retrieved from GitHub. It was not executed on AMRHZ's Termux device or in GitHub Actions. The validator script was separately exercised against a temporary test tree containing the retrieved schema, metadata, and seven-entry registry structure; its local test returned PASS. GitHub Actions run 41270885295 then executed the workflow against PR merge candidate 6a3d5c97c86c4c4bb4b9bd4e264b6197d55978bd and completed successfully. The job used Python 3.13.17, jsonschema 4.26.0, and PyYAML 6.0.3. Its validation step reported seven artifact entries, seven unique IDs, valid lifecycle statuses, seven existing registry path targets, and two metadata instances passing format-checked schema validation.
 
 PR #4's seven input blob identities were reported by GPT and Meta AI as matching the current-main snapshot. Blob identity confirms the compared input files were unchanged; it is not itself a test execution.
 
@@ -108,7 +108,7 @@ PR #4's seven input blob identities were reported by GPT and Meta AI as matching
 
 ## 9. Remaining limitations
 
-- GitHub Actions validation for the new workflow: PENDING.
+- GitHub Actions validation for the new workflow: PASS — run 41270885295, job 124743240429, all steps successful.
 - Human acceptance of the revised task record and documentation package: PENDING.
 - Termux-side validation: NOT RUN.
 - Runtime cross-provider dispatch/API integration: NOT VERIFIED.
@@ -120,14 +120,14 @@ PR #4's seven input blob identities were reported by GPT and Meta AI as matching
 
 - Current result: PARTIAL.
 - Human acceptance: AMRHZ retains final authority and has not been recorded as accepting this revision.
-- Next checkpoint: review PR #5, confirm the GitHub Actions run, and obtain AMRHZ's acceptance before marking the documentation/validation task complete.
+- Next checkpoint: review PR #5 and obtain AMRHZ's acceptance before marking the documentation/validation task complete.
 
 ## 11. Integrity rules
 
 - Original Task #001 remains preserved and unchanged.
 - Meta AI is credited only for the review response actually supplied.
 - GPT-side validation is not attributed to Meta AI.
-- CI is not marked PASS until a real workflow run completes.
+- CI is marked PASS only for the successful PR #5 run recorded above; later commits still require their own checks.
 - Manual handoff is not described as API integration or automatic dispatch.
 - No secrets, tokens, or credentials are included.
 - Human authority remains final.

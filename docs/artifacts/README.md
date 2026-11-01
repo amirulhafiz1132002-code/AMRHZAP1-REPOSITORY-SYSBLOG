@@ -19,6 +19,12 @@ GitHub is used as a versioned record store. The repository URL, file path, and c
 | dataset | dataset card, schema, lineage metadata |
 | model | model card, weights manifest, evaluation record |
 
+## Initial protocol metadata records
+
+- [ASIP-13 metadata](ASIP-13.json)
+- [RWCAI-13 metadata](RWCAI-13.json)
+- [RWCAI task-record template](../templates/RWCAI-task-record.md)
+
 ## Required metadata
 
 The canonical schema is [artifact.schema.json](../../schemas/artifact.schema.json). Each artifact should identify:

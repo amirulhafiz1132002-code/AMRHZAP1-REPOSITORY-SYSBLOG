@@ -24,6 +24,7 @@ GitHub is used as a versioned record store. The repository URL, file path, and c
 - [ASIP-13 metadata](ASIP-13.json)
 - [RWCAI-13 metadata](RWCAI-13.json)
 - [RWCAI task-record template](../templates/RWCAI-task-record.md)
+- [Artifact registry validation report](../verification/ARTIFACT-REGISTRY-VALIDATION-2026-11-01.md)
 
 ## Required metadata
 

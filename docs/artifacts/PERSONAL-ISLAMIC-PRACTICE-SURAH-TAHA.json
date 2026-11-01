@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "AMRHZ-PERSONAL-ISLAMIC-PRACTICE-SURAH-TAHA",
+  "title": "Personal Islamic Practice & Reflection — Surah Taha",
+  "owner": "AMRHZ",
+  "record_type": "personal_learning_and_reflection",
+  "status": "living_personal_note",
+  "created": "2026-11-01",
+  "language": [
+    "en",
+    "ms"
+  ],
+  "human_document": "PERSONAL-ISLAMIC-PRACTICE-SURAH-TAHA.md",
+  "purpose": {
+    "summary": "Record the owner's personal intention to carry Islamic values and learning into everyday life while working, building technology, learning, and handling responsibilities.",
+    "not_intended_as": [
+      "religious_product_specification",
+      "fatwa",
+      "tafsir",
+      "formal_religious_instruction",
+      "claim_of_spiritual_status",
+      "automated_worship_metric"
+    ]
+  },
+  "quran_reflection_references": [
+    {
+      "surah_number": 20,
+      "surah_name": "Taha",
+      "ayah_range": "14",
+      "role": "personal_reflection_reference",
+      "note": "A reminder connected with remembering Allah and establishing prayer.",
+      "source_text_included": false
+    },
+    {
+      "surah_number": 20,
+      "surah_name": "Taha",
+      "ayah_range": "25-28",
+      "role": "personal_reflection_reference",
+      "note": "The supplication of Prophet Musa (peace be upon him), asking for his heart to be opened and his task to be made easier.",
+      "source_text_included": false
+    }
+  ],
+  "personal_intentions": [
+    "Examine intention rather than assume every activity is automatically an act of worship.",
+    "Remember Allah and remain attentive to prayer and religious obligations.",
+    "Practise honesty, trustworthiness, patience, humility, and fairness.",
+    "Avoid allowing technical ambition, productivity, or recognition to displace religious responsibilities.",
+    "Treat mistakes as opportunities for correction and accountability.",
+    "Use reliable Islamic sources and qualified guidance for religious questions."
+  ],
+  "reflection_loop": {
+    "before": "Pause, remember Allah, and examine intention.",
+    "during": "Work honestly, patiently, and responsibly; do not neglect obligations.",
+    "after": "Reflect on conduct, acknowledge mistakes, make corrections, and seek to improve."
+  },
+  "ai_handling": {
+    "intended_use": "Help authorised AI systems understand and organise this personal context when relevant and permitted.",
+    "instructions": [
+      "Treat this record as the owner's personal reflection, not as a universal instruction for other people.",
+      "Preserve the distinction between Quranic reference, sourced explanation, personal reflection, and practical intention.",
+      "Do not invent Quranic quotations, translations, hadith, tafsir, or religious rulings.",
+      "Do not present the AI as a religious authority.",
+      "For religious interpretation or rulings, recommend reliable sources and qualified scholars.",
+      "Do not infer or score the owner's faith, sincerity, worship, or spiritual status.",
+      "Respect access permissions and the owner's control over this personal record."
+    ]
+  },
+  "boundaries": {
+    "is_fatwa": false,
+    "is_tafsir": false,
+    "certifies_spiritual_status": false,
+    "permits_automated_worship_scoring": false,
+    "grants_ai_access_by_itself": false
+  },
+  "provenance": {
+    "authored_for": "AMRHZ",
+    "source_of_intent": "Owner-provided personal explanation and approval in conversation.",
+    "ai_generated_structure": true,
+    "religious_source_text_embedded": false
+  }
+}

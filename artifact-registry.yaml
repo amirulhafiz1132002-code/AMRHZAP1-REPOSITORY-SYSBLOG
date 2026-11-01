@@ -1,0 +1,46 @@
+registry:
+  name: AMRHZ Persistent Knowledge & Evidence Registry
+  version: 1.0.0
+  status: INITIAL
+  governing_protocol: ASIP-13
+  repository: https://github.com/amirulhafiz1132002-code/AMRHZAP1-REPOSITORY-SYSBLOG
+
+artifacts:
+  - artifact_id: ASIP-13
+    title: AMRHZ Shared Intelligence Protocol
+    artifact_type: protocol
+    version: 1.0.0
+    status: DOCUMENTED
+    path: docs/protocols/ASIP-13.md
+    verification:
+      status: PENDING
+      scope: Documentation review and schema/link validation
+    limitations:
+      - Protocol documentation does not implement authentication, authorization, or runtime orchestration.
+      - Conformance by external AI services has not been independently verified.
+
+  - artifact_id: RWCAI-13
+    title: Real World Cross-AI Collaboration Pipeline
+    artifact_type: protocol
+    version: 1.0.0
+    status: DOCUMENTED
+    path: docs/protocols/RWCAI-13.md
+    verification:
+      status: PENDING
+      scope: Documentation review and one fully recorded end-to-end collaboration task
+    limitations:
+      - Automated cross-provider dispatch is not verified.
+      - Shared cross-provider memory is not implemented by this documentation.
+      - Tool-assisted or API-integrated operation requires separate evidence.
+
+  - artifact_id: AMRHZ-ARTIFACT-SCHEMA-001
+    title: AMRHZ Persistent Artifact Metadata Schema
+    artifact_type: architecture
+    version: 1.0.0
+    status: DEVELOPMENT
+    path: schemas/artifact.schema.json
+    verification:
+      status: PENDING
+      scope: JSON Schema parser and example-instance validation
+    limitations:
+      - Schema validation has not yet been executed in a CI workflow.

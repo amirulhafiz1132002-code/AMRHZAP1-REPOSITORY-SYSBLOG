@@ -127,6 +127,19 @@ The resulting state showed SSH listening on port `8022`, followed by a successfu
 
 This is recorded as evidence, not as a claim of capability without verification.
 
+## Protocols & Persistent Knowledge
+
+The versioned protocol and artifact documentation is being maintained under the documentation area:
+
+- [Documentation index](docs/README.md)
+- [ASIP ♾️13 — AMRHZ Shared Intelligence Protocol](docs/protocols/ASIP-13.md)
+- [RWCAI ♾️13 — Real World Cross-AI Collaboration Pipeline](docs/protocols/RWCAI-13.md)
+- [Persistent artifact registry and evidence model](docs/artifacts/README.md)
+- [Artifact metadata schema](schemas/artifact.schema.json)
+- [Artifact registry manifest](artifact-registry.yaml)
+
+These records define governance and metadata contracts. They do not by themselves establish live AI-to-AI connectivity, automatic dispatch, shared runtime memory, or verified implementation. See each document's status and limitations.
+
 ## Proposed SYSBLOG Structure
 
 ```text

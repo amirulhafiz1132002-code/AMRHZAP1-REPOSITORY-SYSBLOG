@@ -1,0 +1,47 @@
+{
+  "artifact_id": "ASIP-13",
+  "title": "AMRHZ Shared Intelligence Protocol",
+  "artifact_type": "protocol",
+  "version": "1.0.0",
+  "status": "PARTIAL",
+  "description": "Governance and evidence protocol for human-led collaboration across independent AI systems in the AMRHZ ecosystem.",
+  "provenance": {
+    "repository": "https://github.com/amirulhafiz1132002-code/AMRHZAP1-REPOSITORY-SYSBLOG",
+    "path": "docs/protocols/ASIP-13.md",
+    "revision": "e3f32bb46bfecf62c423b6a836a0b27371ed2e2c",
+    "source_artifacts": [
+      "https://github.com/amirulhafiz1132002-code/AMRHZ-Website/blob/main/AI-CONTEXT.md",
+      "https://github.com/amirulhafiz1132002-code/amrhz-architecture-core/blob/main/README.md"
+    ]
+  },
+  "created_at": "2026-11-01T02:48:46Z",
+  "updated_at": "2026-11-01T02:48:46Z",
+  "owner_role": "Human owner / AMRHZ",
+  "tags": [
+    "ASIP-13",
+    "governance",
+    "cross-ai",
+    "evidence",
+    "human-oversight"
+  ],
+  "verification": {
+    "status": "PARTIAL",
+    "scope": "Canonical document publication and repository readback; runtime enforcement and external AI conformance excluded.",
+    "evidence": [
+      {
+        "claim": "The ASIP-13 specification is present in the canonical SYSBLOG main branch.",
+        "source": "https://github.com/amirulhafiz1132002-code/AMRHZAP1-REPOSITORY-SYSBLOG/blob/main/docs/protocols/ASIP-13.md",
+        "revision": "e3f32bb46bfecf62c423b6a836a0b27371ed2e2c",
+        "captured_at": "2026-11-01T02:48:46Z",
+        "method": "GitHub repository readback after merge.",
+        "result": "PASS",
+        "notes": "Confirms document publication only; does not establish technical enforcement or conformance by external AI services."
+      }
+    ]
+  },
+  "limitations": [
+    "This document is a governance specification, not an implemented identity provider or authorization engine.",
+    "External AI systems have not been independently tested for ASIP conformance.",
+    "The protocol does not itself create cross-provider connectivity or shared memory."
+  ]
+}

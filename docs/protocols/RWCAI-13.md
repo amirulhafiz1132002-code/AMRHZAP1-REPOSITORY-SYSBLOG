@@ -1,7 +1,7 @@
 # RWCAI ♾️13 — Real World Cross-AI Collaboration Pipeline
 
 **Document type:** Collaboration pipeline specification  
-**Version:** 1.0.0  
+**Version:** 1.1.0  
 **Status:** DOCUMENTED / OPERATIONAL INTEGRATION NOT VERIFIED  
 **Governing protocol:** [ASIP ♾️13](ASIP-13.md)  
 **Parent ecosystem:** AMRHZ
@@ -49,7 +49,7 @@ ASSIGN INDEPENDENT AI CONTRIBUTIONS
 EXECUTE TASKS IN EACH REAL ENVIRONMENT
     |
     v
-EXCHANGE VERSIONED ARTIFACTS
+EXCHANGE VERSIONED ARTIFACTS + ATTRIBUTED CONTEXT
     |
     v
 INDEPENDENT REVIEW / CHALLENGE
@@ -93,7 +93,7 @@ Each collaboration task should record:
 - verification results
 - final status and next checkpoint
 
-Use the artifact metadata schema and evidence model linked from [the artifact registry](../artifacts/README.md).
+Use the artifact metadata schema and evidence model linked from [the artifact registry](../artifacts/README.md), and the [RWCAI task-record template](../templates/RWCAI-task-record.md).
 
 ## 6. Review and disagreement handling
 
@@ -139,10 +139,44 @@ This status is intentionally conservative. It can be updated when versioned task
 5. Evaluate whether tool-assisted or API-integrated exchange is justified.
 6. Implement automation only after authorization, threat review, and a testable design.
 
-## 10. Governance
+## 10. Multi-AI context contribution and handoff
+
+Participating AI systems may voluntarily contribute relevant context from their actual collaboration with AMRHZ when that context is available to them and permitted to be shared. Examples include task summaries, prior outputs, technical findings, owner-confirmed decisions, unresolved questions, and lessons learned.
+
+This exchange is an explicit handoff of selected information. It is not automatic synchronization of private memories, conversations, accounts, or internal AI state.
+
+Each context handoff should record, where available:
+
+- contributing AI system/service;
+- source conversation, artifact, task ID, or repository revision;
+- date or time period;
+- purpose and relevance to the current task;
+- whether the contribution is a direct extract, summary, interpretation, or recommendation;
+- verification and owner-confirmation status;
+- uncertainty, omissions, and known limitations;
+- applicable privacy, consent, and handling restrictions.
+
+### 10.1 Handling rules
+
+1. Preserve the original source and attribute each contribution.
+2. Keep AI interpretation distinct from owner-stated information and verified facts.
+3. Do not invent source metadata when it is unavailable.
+4. Do not include secrets, credentials, or unrelated personal information.
+5. Do not infer that one AI can access another AI's hidden memory.
+6. Record disagreements and retain competing source references until reconciled.
+7. Ask the human owner to clarify material conflicts or approve promotion into canonical context.
+8. Treat context as input to a task, never as authorization for a consequential action.
+
+### 10.2 Context status
+
+Use the existing labels OWNER-STATED, SOURCE-FACT, AI-INTERPRETATION, OWNER-CONFIRMED, VERIFIED-STATE, ASSUMPTION, UNRESOLVED, and SUPERSEDED as defined by the Intent Clarification Layer.
+
+A context handoff is not itself proof that the underlying claim is true. Verification remains tied to the specific claim and its evidence.
+
+## 11. Governance
 
 RWCAI operates under ASIP ♾️13. Human authority remains final for task scope, approvals, and acceptance. AI participants may analyze, propose, execute authorized work, and review evidence within their granted permissions.
 
 ---
 
-**Principle:** Independent intelligence. Shared evidence. No false connection. Human-governed execution.
+**Principle:** Independent intelligence. Shared evidence. Attributed context. No false connection. Human-governed execution.

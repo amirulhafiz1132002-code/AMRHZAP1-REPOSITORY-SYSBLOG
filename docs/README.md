@@ -31,6 +31,12 @@ This is an owner-authored personal reflection record, not a product specificatio
 
 The Intent Clarification Layer is the human- and AI-readable framework for collecting, tracing, clarifying, and reviewing the intent behind AMRHZ work. Its full personal and project overview remains pending the owner's source collection and review. Context does not grant implementation or deployment authorization.
 
+## Multi-AI context collaboration
+
+ASIP and RWCAI define a voluntary, attributed context-contribution process for participating AI systems. Shared context must preserve source provenance, distinguish owner statements from AI interpretation, respect privacy and source-service controls, and remain separate from authorization. No document in this directory implies automatic cross-provider memory access, runtime connectivity, or unrestricted synchronization.
+
+See [ASIP Section 9](protocols/ASIP-13.md#9-multi-ai-shared-context-and-memory-contribution), [RWCAI Section 10](protocols/RWCAI-13.md#10-multi-ai-context-contribution-and-handoff), and the [RWCAI task-record template](templates/RWCAI-task-record.md).
+
 ## Authority and status
 
 These documents define the intended protocol and governance model. They do not create technical integrations, authenticate AI systems, grant repository permissions, or prove that a runtime is connected.

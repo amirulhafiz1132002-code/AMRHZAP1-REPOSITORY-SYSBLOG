@@ -30,11 +30,13 @@
 
 Record only participants that actually took part. Do not list an AI because it was merely planned or mentioned.
 
-## Source artifacts
+## Source artifacts and context contributions
 
-| Artifact ID | Repository / URL | Revision | Why it is relevant |
-|---|---|---|---|
-| | | | |
+| Artifact / Context ID | Contributing participant or source | Repository / URL / source reference | Revision / date | Classification | Handling restrictions |
+|---|---|---|---|---|---|
+| | | | | OWNER-STATED / SOURCE-FACT / AI-INTERPRETATION / OWNER-CONFIRMED / VERIFIED-STATE / ASSUMPTION / UNRESOLVED / SUPERSEDED | |
+
+Record only context actually supplied and inspected. If source metadata is unavailable, state that it is unavailable; do not invent it. Do not copy private memory, credentials, or unrelated personal information.
 
 ## Execution and handoffs
 
@@ -43,7 +45,7 @@ Record only participants that actually took part. Do not list an AI because it w
 | Task definition | | | | |
 | Source inspection | | | | |
 | First contribution | | | | |
-| Artifact handoff | | | | |
+| Context / artifact handoff | | | | |
 | Independent review | | | | |
 | Correction / reconciliation | | | | |
 | Human acceptance | | | | |
@@ -55,6 +57,7 @@ Record only participants that actually took part. Do not list an AI because it w
 - Supporting evidence:
 - Conflicting result, if any:
 - Resolution and rationale:
+- Owner clarification required:
 
 ## Verification
 
@@ -81,3 +84,5 @@ Record only participants that actually took part. Do not list an AI because it w
 - A sent message is not proof of a received response.
 - A UI connection indicator is not proof of an operational integration.
 - Human acceptance does not replace technical verification.
+- Context sharing is voluntary and subject to source-service controls and applicable consent.
+- A context contribution does not grant access to the contributor's private memory or authorize unrelated actions.
